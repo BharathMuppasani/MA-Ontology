@@ -1,0 +1,84 @@
+{
+  "agents": [
+    {
+      "uri": "http://example.org/ma-planning#Agent1",
+      "agentID": "A1",
+      "capability": "move",
+      "initialLocation": "http://example.org/plan#Cell_0_0",
+      "goalLocation": "http://example.org/plan#Cell_4_4"
+    },
+    {
+      "uri": "http://example.org/ma-planning#Agent2",
+      "agentID": "A2",
+      "capability": "move",
+      "initialLocation": "http://example.org/plan#Cell_4_0",
+      "goalLocation": "http://example.org/plan#Cell_0_4"
+    }
+  ],
+  "agentStates": [
+    {
+      "uri": "http://example.org/ma-planning#AgentState1",
+      "agent": "http://example.org/ma-planning#Agent1",
+      "agentAt": "http://example.org/plan#Cell_0_0"
+    },
+    {
+      "uri": "http://example.org/ma-planning#AgentState2",
+      "agent": "http://example.org/ma-planning#Agent2",
+      "agentAt": "http://example.org/plan#Cell_4_0"
+    }
+  ],
+  "collisionEvents": [
+    {
+      "uri": "http://example.org/ma-planning#Event1",
+      "conflictID": "E1",
+      "occursAtTime": "2025-06-24T07:00:00",
+      "conflictType": "vertexConflict",
+      "conflictLocation": "http://example.org/plan#Cell_1_1",
+      "involvesAgents": [
+        "http://example.org/ma-planning#Agent1",
+        "http://example.org/ma-planning#Agent2"
+      ]
+    }
+  ],
+  "conflictAlerts": [
+    {
+      "uri": "http://example.org/ma-planning#Alert1",
+      "alertsConflict": "http://example.org/ma-planning#Event1",
+      "targetAgent": "http://example.org/ma-planning#Agent1",
+      "rewindWindow": 2,
+      "alertType": "static",
+      "staticForbiddenCells": [
+        "http://example.org/plan#Cell_1_1"
+      ]
+    }
+  ],
+  "agentSubPlans": [
+    {
+      "uri": "http://example.org/ma-planning#SubPlan1",
+      "belongsToAgent": "http://example.org/ma-planning#Agent1",
+      "planCost": 5,
+      "isDerivedFromConflict": "http://example.org/ma-planning#Event1",
+      "planData": "Subtrajectory1"
+    },
+    {
+      "uri": "http://example.org/ma-planning#SubPlan2",
+      "belongsToAgent": "http://example.org/ma-planning#Agent2",
+      "planCost": 6,
+      "planData": "Subtrajectory2"
+    }
+  ],
+  "jointPlans": [
+    {
+      "uri": "http://example.org/ma-planning#JointPlan1",
+      "composedOfSubPlans": [
+        "http://example.org/ma-planning#SubPlan1",
+        "http://example.org/ma-planning#SubPlan2"
+      ],
+      "globalMakespan": 10,
+      "usedAlertSet": [
+        "http://example.org/ma-planning#Alert1"
+      ],
+      "planData": "JointTrajectory1"
+    }
+  ]
+}
