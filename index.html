@@ -90,6 +90,24 @@
         .sparql-punc { color: #abb2bf; }
         .sparql-prefix { color: #d19a66; }
         .sparql-function { color: #61afef; }
+        .prose table {
+            width: 100%;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-collapse: collapse;
+        }
+        .prose th, .prose td {
+            border: 1px solid #E5E7EB;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .prose th {
+            background-color: #F9FAFB;
+            font-weight: 600;
+        }
+        .prose td code {
+            font-size: 0.9rem;
+        }
 
     </style>
 </head>
@@ -153,14 +171,73 @@
                         <img src="ontology/maPO.png" alt="MA-Ontology Schema Diagram" class="mx-auto rounded-md">
                         <p class="text-sm text-gray-500 mt-2">The maPO schema, illustrating the classes and properties for modeling the MAPF planning and conflict-resolution workflow.</p>
                     </div>
-                    <p>The maPO extends the foundational concepts of the standard Planning Ontology to address the unique complexities of multi-agent scenarios. It creates a formal, queryable knowledge base that supports on-demand explainability. To ensure interoperability, maPO reuses concepts from established W3C and IEEE standards like SOSA, CORA, OWL-Time, and PROV-O.</p>
-                    <p>The ontology is structured to model agent-centric information, inter-agent conflicts, and the procedural rationale behind conflict resolution. This transforms opaque execution trace data into a clear knowledge graph, enabling the systematic generation of answers to complex explanatory questions.</p>
+                    <p>The maPO extends the foundational concepts of the standard Planning Ontology to address the unique complexities of multi-agent scenarios. It creates a formal, queryable knowledge base that supports on-demand explainability. To ensure interoperability, maPO reuses concepts from established W3C and IEEE standards.</p>
+                    
                     <h3>Core Components</h3>
                     <ul>
                         <li><strong>Agent and State Representation:</strong> Models each agent's identity, capabilities, and location at specific points in time. The <code>ma:Agent</code> class is defined as a subclass of both <code>plan:ProblemObject</code> and <code>sosa:Platform</code> to ground it as an entity capable of perception and action.</li>
                         <li><strong>Multi-Agent Plan Representation:</strong> Defines the hierarchy of a global <code>ma:JointPlan</code> composed of individual <code>ma:AgentSubPlan</code> instances. It distinguishes between the initial <code>ma:OriginalSubPlan</code> and any subsequent <code>ma:ResolvedSubPlan</code> generated after conflict resolution.</li>
                         <li><strong>Conflict and Resolution Modeling:</strong> Captures the entire lifecycle of a conflict, from a <code>ma:CollisionEvent</code> to a <code>ma:ConflictAlert</code> and the resulting <code>ma:ReplanningStrategy</code>. It uses the PROV Ontology (PROV-O) to create a traceable, auditable record of how and why a plan was revised, using properties like <code>prov:wasDerivedFrom</code> to link plan versions.</li>
                     </ul>
+
+                    <h3>Ontologies Reused</h3>
+                    <p>To ground our ontology in established semantic standards and enhance interoperability, maPO reuses concepts from several widely adopted resources:</p>
+                    <ul>
+                        <li><strong>SOSA/SSN:</strong> To model agents as platforms capable of sensing and acting.</li>
+                        <li><strong>Provenance Ontology (PROV-O):</strong> To formally link original and revised plans, creating a traceable history of the planner's conflict resolution decisions.</li>
+                        <li><strong>OWL-Time:</strong> To represent time instants and intervals for events, states, and path segments.</li>
+                        <li><strong>CORA:</strong> To define agent capabilities in a structured manner.</li>
+                        <li><strong>RDF Schema:</strong> To structure agent path sequences and other foundational data types.</li>
+                    </ul>
+                    <h3>Ontology Prefixes</h3>
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Prefix</th>
+                                    <th>IRI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>ma</code></td>
+                                    <td><code>http://example.org/ma#</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>plan</code></td>
+                                    <td><code>https://ai4society.github.io/planning-ontology#</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>owl</code></td>
+                                    <td><code>http://www.w3.org/2002/07/owl#</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>prov</code></td>
+                                    <td><code>http://www.w3.org/ns/prov#</code></td>
+                                </tr>
+                                 <tr>
+                                    <td><code>rdf</code></td>
+                                    <td><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>rdfs</code></td>
+                                    <td><code>http://www.w3.org/2000/01/rdf-schema#</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>sosa</code></td>
+                                    <td><code>http://www.w3.org/ns/sosa/</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>time</code></td>
+                                    <td><code>http://www.w3.org/2006/time#</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>xsd</code></td>
+                                    <td><code>http://www.w3.org/2001/XMLSchema#</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
 
                 <!-- Use Cases / Competency Questions Section -->
@@ -185,7 +262,7 @@
                         
                         <div class="cq-item border border-gray-200 rounded-lg p-4 bg-white">
                             <h3 class="!mt-0">C1 & C2: List an Agent's Conflicts</h3>
-                            <p><strong>Purpose:</strong> To identify all collision events a specific agent was involved in, including the time, type, location, and other agents involved.</p>
+                            <p><strong>Purpose:</strong> In a MAPF setting, this question is fundamental for debugging and analysis. It helps diagnose why a plan might be inefficient or complex by pinpointing every moment of contention (a vertex or edge conflict) that the planner had to resolve for a specific agent. It identifies the "what, where, when, and who" of every conflict.</p>
                             <h4>SPARQL Query</h4>
                             <pre><code><span class="sparql-keyword">SELECT</span> <span class="sparql-variable">?conflict</span> <span class="sparql-variable">?timestamp</span> <span class="sparql-variable">?type</span> 
   <span class="sparql-punc">(</span><span class="sparql-function">GROUP_CONCAT</span><span class="sparql-punc">(</span><span class="sparql-keyword">DISTINCT</span> <span class="sparql-variable">?otherAgentName</span><span class="sparql-punc">;</span> <span class="sparql-variable">separator</span><span class="sparql-punc">=</span><span class="sparql-string">", "</span><span class="sparql-punc">)</span> <span class="sparql-keyword">as</span> <span class="sparql-variable">?involvedAgents</span><span class="sparql-punc">)</span> 
@@ -210,7 +287,7 @@ With: [involvedAgents]</code></pre>
 
                         <div class="cq-item border border-gray-200 rounded-lg p-4 bg-white">
                             <h3 class="!mt-0">C4: Explain Why an Agent Waited</h3>
-                            <p><strong>Purpose:</strong> To determine the causal reason for an agent's delay by linking its wait states back to a specific conflict it was trying to avoid.</p>
+                            <p><strong>Purpose:</strong> This is crucial for understanding plan sub-optimality. Waiting is a primary strategy to avoid collisions, but it directly impacts an agent's travel time and the overall plan efficiency (makespan). This query provides a direct causal link, explaining that a wait was not arbitrary but a necessary action to prevent a specific, identified conflict with another agent.</p>
                             <h4>SPARQL Query</h4>
                             <pre><code><span class="sparql-keyword">SELECT</span> <span class="sparql-variable">?startTS</span> <span class="sparql-variable">?endTS</span> <span class="sparql-variable">?otherAgentName</span> <span class="sparql-variable">?conflictTS</span> <span class="sparql-variable">?x</span> <span class="sparql-variable">?y</span> 
 <span class="sparql-keyword">WHERE</span> <span class="sparql-punc">{</span> 
@@ -236,7 +313,7 @@ This was necessary to avoid a planned conflict with [Other Agent Name] that woul
                         
                         <div class="cq-item border border-gray-200 rounded-lg p-4 bg-white">
                            <h3 class="!mt-0">C3, C5, C7: Show Plan Change & Rationale</h3>
-                            <p><strong>Purpose:</strong> To reconstruct the full history of an agent's replanning events, showing how and why its plan changed by tracing the provenance from the original to the resolved sub-plan and extracting the planner's rationale.</p>
+                            <p><strong>Purpose:</strong> This provides a complete audit trail of the planner's reasoning. It addresses contrastive questions ("Why this path and not the original one?") by showing the sequence of conflict-detection and resolution steps. It reveals not only *that* a plan changed, but also the specific strategy and justification (the <code>selectionRationale</code>) the planner used at each decision point, making the entire process transparent.</p>
                             <h4>SPARQL Query</h4>
                             <pre><code><span class="sparql-keyword">SELECT</span> <span class="sparql-variable">?planType</span> <span class="sparql-variable">?planCost</span> <span class="sparql-variable">?timestamp</span> <span class="sparql-variable">?x</span> <span class="sparql-variable">?y</span> <span class="sparql-variable">?rationale</span> <span class="sparql-punc">(</span><span class="sparql-function">GROUP_CONCAT</span><span class="sparql-punc">(</span><span class="sparql-keyword">DISTINCT</span> <span class="sparql-variable">?otherAgentName</span><span class="sparql-punc">)</span> <span class="sparql-keyword">AS</span> <span class="sparql-variable">?otherAgents</span><span class="sparql-punc">)</span>
 <span class="sparql-keyword">WHERE</span> <span class="sparql-punc">{</span>
@@ -264,6 +341,29 @@ This was necessary to avoid a planned conflict with [Other Agent Name] that woul
 This changed the plan cost from [Original Cost] to [New Cost].
 Rationale: Using a [Alert Type] strategy, [Rationale].</code></pre>
                         </div>
+                        
+                        <div class="cq-item border border-gray-200 rounded-lg p-4 bg-white">
+                           <h3 class="!mt-0">C6 & C8: Global & Agent-Specific Performance</h3>
+                            <p><strong>Purpose:</strong> These queries provide a high-level summary of the final solution's quality. C8 (makespan) is a key metric for overall efficiency, while C6 (per-agent cost) helps identify which agents had the most difficult or longest paths. This is essential for evaluating whether the plan is balanced and fair, or if certain agents bear a disproportionate burden.</p>
+                            <h4>SPARQL Queries</h4>
+                            <pre><code><span class="sparql-comment"># Query for Global Makespan (C8)</span>
+<span class="sparql-keyword">SELECT</span> <span class="sparql-variable">?makespan</span> <span class="sparql-keyword">WHERE</span> <span class="sparql-punc">{</span>
+  <span class="sparql-prefix">ma:FinalJointPlan</span> <span class="sparql-prefix">ma:hasGlobalMakespan</span> <span class="sparql-variable">?makespan</span> <span class="sparql-punc">.</span>
+<span class="sparql-punc">}</span>
+
+<span class="sparql-comment"># Query for Per-Agent Final Cost (C6)</span>
+<span class="sparql-keyword">SELECT</span> <span class="sparql-punc">(</span><span class="sparql-function">STRAFTER</span><span class="sparql-punc">(</span><span class="sparql-function">STR</span><span class="sparql-punc">(</span><span class="sparql-variable">?agent</span><span class="sparql-punc">),</span> <span class="sparql-string">"#"</span><span class="sparql-punc">)</span> <span class="sparql-keyword">AS</span> <span class="sparql-variable">?agentName</span><span class="sparql-punc">)</span> <span class="sparql-variable">?cost</span> <span class="sparql-keyword">WHERE</span> <span class="sparql-punc">{</span>
+  <span class="sparql-prefix">ma:FinalJointPlan</span> <span class="sparql-prefix">ma:composedOfSubPlans</span> <span class="sparql-variable">?plan</span> <span class="sparql-punc">.</span>
+  <span class="sparql-variable">?plan</span> <span class="sparql-prefix">ma:belongsToAgent</span> <span class="sparql-variable">?agent</span> <span class="sparql-punc">;</span>
+        <span class="sparql-prefix">ma:hasPlanCost</span> <span class="sparql-variable">?cost</span> <span class="sparql-punc">.</span>
+<span class="sparql-punc">}</span></code></pre>
+                            <h4>Natural Language Template</h4>
+                            <pre><code>Here is a summary of the final joint plan:
+The overall makespan is [Makespan].
+The sum of individual plan costs is [Sum of Costs].
+To achieve this solution, a total of [Replan Count] replans were required.</code></pre>
+                        </div>
+
 
                     </div>
                 </section>
