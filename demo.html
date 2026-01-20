@@ -77,8 +77,8 @@
         
         #metadataDisplay { font-size: 0.9rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.5rem; }
         #metadataDisplay div { display: flex; justify-content: space-between; }
-        #metadataDisplay span:first-child { font-weight: 500; color: var(--color-text-dark); }
-        #metadataDisplay span:last-child { font-weight: 400; color: var(--color-text-muted); }
+        #metadataDisplay > div:not(.data-source-buttons) span:first-child { font-weight: 500; color: var(--color-text-dark); }
+        #metadataDisplay > div:not(.data-source-buttons) span:last-child { font-weight: 400; color: var(--color-text-muted); }
 
         #explanationPanelContainer.hidden { display: none; }
         #explanationPanel { display: flex; flex-direction: column; gap: 0.75rem; }
@@ -351,6 +351,27 @@
             background-color: var(--color-panel-bg);
             border-color: var(--color-primary);
             color: var(--color-primary);
+        }
+        .accent-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            background-color: var(--color-primary);
+            color: #fff;
+            border: 1px solid var(--color-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            flex: 1;
+        }
+        .accent-btn:hover {
+            background-color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
         }
         .example-preview-loading {
             color: var(--color-text-muted);
@@ -834,7 +855,7 @@
                 getAgentDisplayName(agentId) { if (!agentId || typeof agentId !== 'string') return ''; const name = agentId.includes(':') ? agentId.split(':')[1] : agentId; const parts = name.split('-'); return `Agent ${parts[1] || name}`; },
                 summarizeTrajectory(path) { if (!path || path.length < 2) return 'The agent does not move.'; let summaryParts = []; let i = 0; while (i < path.length - 1) { let currentCell = path[i]; let waitCount = 0; while (i + 1 < path.length && path[i+1] === currentCell) { waitCount++; i++; } if (waitCount > 0) summaryParts.push(`<strong>waits</strong> at ${currentCell} for ${waitCount} step(s)`); if (i + 1 < path.length) summaryParts.push(`<strong>moves</strong> to ${path[i+1]}`); i++; } return `The agent starts at ${path[0]}, then ${summaryParts.join(', then ')}.`; },
                 switchView(viewName) { document.querySelectorAll('.view-switcher button').forEach(btn => btn.classList.toggle('active', btn.dataset.view === viewName)); document.querySelectorAll('.vis-container').forEach(container => container.classList.toggle('active', container.id === viewName)); const showSimControls = viewName === 'grid' && state.gridData; this.dom.simControlsContainer.classList.toggle('hidden', !showSimControls); if (viewName !== 'grid') this.highlightConflicts([]); },
-                displayMetadata() { const { fileName, gridData } = state; this.dom.uploadSection.style.display = 'none'; this.dom.metadataDisplay.innerHTML = `<div><span>File Name:</span> <span>${fileName}</span></div><div><span>Environment:</span> <span>${gridData.environmentId || 'N/A'}</span></div><div><span>Agent Count:</span> <span>${Object.keys(gridData.agents).length}</span></div><div><span>Obstacle Count:</span> <span>${gridData.obstacles.length}</span></div><div><span>Conflict Count:</span> <span>${gridData.conflicts.length}</span></div><button id="changeFileBtn" class="question-btn" style="margin-top: 1rem;">Change File</button>`; this.dom.metadataDisplay.style.display = 'flex'; document.getElementById('changeFileBtn').addEventListener('click', () => this.dom.ttlInput.click()); },
+                displayMetadata() { const { fileName, gridData } = state; this.dom.uploadSection.style.display = 'none'; this.dom.metadataDisplay.innerHTML = `<div><span>File Name:</span> <span>${fileName}</span></div><div><span>Environment:</span> <span>${gridData.environmentId || 'N/A'}</span></div><div><span>Agent Count:</span> <span>${Object.keys(gridData.agents).length}</span></div><div><span>Obstacle Count:</span> <span>${gridData.obstacles.length}</span></div><div><span>Conflict Count:</span> <span>${gridData.conflicts.length}</span></div><div class="data-source-buttons" style="margin-top: 1rem;"><button id="changeFileBtn" class="accent-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 12H1.5a.5.5 0 0 1-.5-.5zm14-7a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 1 0 .708-.708L2.707 5H14.5a.5.5 0 0 0 .5-.5z"/></svg><span>Change File</span></button><button id="exampleBtn" class="browse-examples-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/></svg><span>Examples</span></button></div>`; this.dom.metadataDisplay.style.display = 'flex'; document.getElementById('changeFileBtn').addEventListener('click', () => this.dom.ttlInput.click()); document.getElementById('exampleBtn').addEventListener('click', () => this.openExampleModal()); },
                 createResultsTable(results) { if (!results || !results.length) return ''; const headers = Object.keys(results[0]); const table = document.createElement('table'); table.innerHTML = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>`; const tbody = document.createElement('tbody'); results.forEach(row => { const tr = document.createElement('tr'); headers.forEach(h => { const value = row[h] ?? ''; const td = document.createElement('td'); td.textContent = value; td.title = value; tr.appendChild(td); }); tbody.appendChild(tr); }); table.appendChild(tbody); return `<div style="overflow-x: auto; padding-bottom: 0.5rem;">${table.outerHTML}</div>`; },
                 renderChatResponse(question, botContent, queryKey, rawResults, followUps = []) { this.dom.explanationPanel.innerHTML = ''; this.addGoBackButton(); const chatContainer = document.createElement('div'); chatContainer.className = 'chat-container'; const userMsg = document.createElement('div'); userMsg.className = 'chat-message user'; userMsg.textContent = question; const botMsg = document.createElement('div'); botMsg.className = 'chat-message bot'; botMsg.innerHTML = botContent; if (sparqlQueries[queryKey] && state.lastInteraction?.params) { const sparqlQuery = sparqlQueries[queryKey](state.lastInteraction.params); const viewBtn = document.createElement('button'); viewBtn.className = 'view-in-sparql-btn'; viewBtn.textContent = 'View in SPARQL Tab'; viewBtn.onclick = () => { let fullQueryForDisplay = ''; Object.entries(config.prefixes).forEach(([prefix, uri]) => { fullQueryForDisplay += `PREFIX ${prefix}: <${uri}>\n`; }); this.dom.sparqlQuery.value = fullQueryForDisplay + '\n' + sparqlQuery; this.dom.sparqlResult.innerHTML = this.createResultsTable(rawResults); this.switchView('sparql'); }; botMsg.appendChild(viewBtn); } chatContainer.appendChild(userMsg); chatContainer.appendChild(botMsg); this.dom.explanationPanel.appendChild(chatContainer); if (followUps.length > 0) { const followUpHeader = document.createElement('p'); followUpHeader.textContent = 'Further questions:'; followUpHeader.style.fontWeight = '500'; followUpHeader.style.marginTop = '1rem'; this.dom.explanationPanel.appendChild(followUpHeader); followUps.forEach(q => this.addQuestionButton(q)); } },
                 addGoBackButton() { const backBtn = document.createElement('button'); backBtn.className = 'question-btn go-back-btn'; backBtn.textContent = '← Go Back'; backBtn.dataset.type = 'back-to-initial'; this.dom.explanationPanel.appendChild(backBtn); },
