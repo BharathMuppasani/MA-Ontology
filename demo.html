@@ -479,51 +479,58 @@
 
             const exampleLibrary = [
                 {
-                    id: 'robo_lab_1',
-                    title: 'RoboLab 1',
-                    subtitle: 'Simple Conflict',
-                    ttlPath: 'generated_kg/robo_lab_1.ttl',
-                    metadata: { agents: 3, conflicts: 1, makespan: 8.0 },
+                    id: 'example_1',
+                    title: 'Example 1',
+                    ttlPath: 'generated_kg/website_samples/robo5_test1.ttl',
+                    metadata: { agents: 5, conflicts: 'None', makespan: 13.0 },
                     preview: {
                         gridSize: [11, 11],
-                        obstacles: [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[4,0],[4,1],[4,2],[4,3],[4,8],[4,9],[4,10],[5,0],[5,1],[5,2],[5,3],[5,4],[5,8],[5,9],[5,10],[6,0],[6,1],[6,2],[6,3],[6,6],[6,8],[6,9],[6,10],[7,0],[7,1],[7,2],[7,3],[7,8],[7,9],[7,10],[8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,6],[8,7],[8,8],[8,9],[8,10],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8],[9,9],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10]],
-                        agents: [{id:'Robot-1',start:[6,4],goal:[5,6]},{id:'Robot-2',start:[4,4],goal:[7,6]},{id:'Robot-3',start:[4,7],goal:[7,4]}]
+                        obstacles: [[0,0],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[0,1],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[0,2],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,5],[3,8],[3,9],[3,10],[0,3],[4,0],[4,1],[4,5],[4,8],[4,9],[4,10],[5,0],[5,1],[5,8],[5,9],[0,4],[5,10],[6,0],[6,1],[6,8],[6,9],[6,10],[7,0],[7,1],[7,5],[7,8],[0,5],[7,9],[7,10],[8,0],[8,1],[8,5],[8,8],[8,9],[8,10],[9,0],[9,1],[0,6],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8],[9,9],[9,10],[10,0],[0,7],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[0,8]],
+                        agents: [{id:'Robot-1',start:[3,2],goal:[3,7]},{id:'Robot-2',start:[8,2],goal:[8,7]},{id:'Robot-3',start:[3,7],goal:[3,3]},{id:'Robot-4',start:[8,7],goal:[8,3]},{id:'Robot-5',start:[5,2],goal:[8,6]}]
                     }
                 },
                 {
-                    id: 'robo_lab_2',
-                    title: 'RoboLab 2',
-                    subtitle: 'Multiple Conflicts',
-                    ttlPath: 'generated_kg/robo_lab_2.ttl',
-                    metadata: { agents: 3, conflicts: 'Multiple', makespan: 13.0 },
+                    id: 'example_2',
+                    title: 'Example 2',
+                    ttlPath: 'generated_kg/website_samples/robo5_test2.ttl',
+                    metadata: { agents: 5, conflicts: 'None', makespan: 11.0 },
                     preview: {
                         gridSize: [11, 11],
-                        obstacles: [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[3,7],[3,8],[3,9],[3,10],[4,0],[4,1],[4,2],[4,3],[4,7],[4,8],[4,9],[4,10],[5,0],[5,1],[5,2],[5,3],[5,4],[5,6],[5,7],[5,8],[5,9],[5,10],[6,0],[6,1],[6,2],[6,3],[6,7],[6,8],[6,9],[6,10],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,6],[8,7],[8,8],[8,9],[8,10],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8],[9,9],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10]],
-                        agents: [{id:'Robot-1',start:[4,4],goal:[6,4]},{id:'Robot-2',start:[6,4],goal:[4,4]},{id:'Robot-3',start:[6,6],goal:[4,6]}]
+                        obstacles: [[0,0],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[0,1],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[0,2],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,8],[3,9],[3,10],[4,0],[0,3],[4,1],[4,4],[4,5],[4,6],[4,8],[4,9],[4,10],[5,0],[5,1],[5,4],[0,4],[5,8],[5,9],[5,10],[6,0],[6,1],[6,8],[6,9],[6,10],[7,0],[7,1],[0,5],[7,3],[7,8],[7,9],[7,10],[8,0],[8,1],[8,5],[8,8],[8,9],[8,10],[0,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8],[9,9],[0,7],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[0,8],[10,9],[10,10]],
+                        agents: [{id:'Robot-1',start:[3,2],goal:[4,7]},{id:'Robot-2',start:[8,2],goal:[8,7]},{id:'Robot-3',start:[3,7],goal:[3,3]},{id:'Robot-4',start:[8,7],goal:[8,3]},{id:'Robot-5',start:[5,2],goal:[8,6]}]
                     }
                 },
                 {
-                    id: 'icbs_7_2',
-                    title: 'ICBS Map',
-                    subtitle: 'Complex Multi-Agent',
-                    ttlPath: 'generated_kg/icbs_7_2.ttl',
-                    metadata: { agents: 7, conflicts: 'Multiple', makespan: 17.0 },
+                    id: 'example_3',
+                    title: 'Example 3',
+                    ttlPath: 'generated_kg/website_samples/robo5_test3.ttl',
+                    metadata: { agents: 5, conflicts: 'None', makespan: 15.0 },
                     preview: {
                         gridSize: [11, 11],
-                        obstacles: [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],[0,9],[0,10],[1,0],[1,8],[1,10],[2,0],[2,4],[2,8],[2,10],[3,0],[3,8],[3,10],[4,0],[4,6],[4,7],[4,8],[4,10],[5,0],[5,6],[5,10],[6,0],[6,1],[6,2],[6,3],[6,4],[6,6],[6,10],[7,0],[7,10],[8,0],[8,2],[8,4],[8,8],[8,10],[9,0],[9,2],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10]],
-                        agents: [{id:'Robot-1',start:[3,2],goal:[7,8]},{id:'Robot-2',start:[3,7],goal:[4,4]},{id:'Robot-3',start:[8,1],goal:[2,5]},{id:'Robot-4',start:[3,1],goal:[9,5]},{id:'Robot-5',start:[5,1],goal:[7,7]},{id:'Robot-6',start:[9,3],goal:[8,9]},{id:'Robot-7',start:[9,6],goal:[2,3]}]
+                        obstacles: [[0,0],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[0,1],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[0,2],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,8],[3,9],[3,10],[4,0],[0,3],[4,1],[4,3],[4,4],[4,6],[4,7],[4,8],[4,9],[4,10],[5,0],[5,1],[0,4],[5,8],[5,9],[5,10],[6,0],[6,1],[6,2],[6,3],[6,4],[6,6],[6,7],[0,5],[6,8],[6,9],[6,10],[7,0],[7,1],[7,8],[7,9],[7,10],[8,0],[8,1],[0,6],[8,8],[8,9],[8,10],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[0,7],[9,7],[9,8],[9,9],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[0,8],[10,6],[10,7],[10,8],[10,9],[10,10]],
+                        agents: [{id:'Robot-1',start:[3,2],goal:[5,7]},{id:'Robot-2',start:[5,7],goal:[8,2]},{id:'Robot-3',start:[8,7],goal:[3,2]},{id:'Robot-4',start:[3,5],goal:[8,5]},{id:'Robot-5',start:[5,2],goal:[3,7]}]
                     }
                 },
                 {
-                    id: 'rl_disappear_at_target',
-                    title: 'RL Disappear',
-                    subtitle: 'Target Disappearance',
-                    ttlPath: 'generated_kg/rl_disappear_at_target.ttl',
-                    metadata: { agents: 5, conflicts: 'Multiple', makespan: 18.0 },
+                    id: 'example_4',
+                    title: 'Example 4',
+                    ttlPath: 'generated_kg/website_samples/robo5_test4.ttl',
+                    metadata: { agents: 5, conflicts: 'None', makespan: 19.0 },
                     preview: {
                         gridSize: [11, 11],
-                        obstacles: [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],[0,9],[0,10],[1,0],[1,2],[1,10],[2,0],[2,2],[2,3],[2,8],[2,10],[3,0],[3,10],[4,0],[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,10],[5,0],[5,10],[6,0],[6,4],[6,10],[7,0],[7,4],[7,10],[8,0],[8,2],[8,4],[8,6],[8,10],[9,0],[9,4],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10]],
-                        agents: [{id:'Robot-1',start:[1,8],goal:[7,3]},{id:'Robot-2',start:[5,3],goal:[2,5]},{id:'Robot-3',start:[1,7],goal:[7,1]},{id:'Robot-4',start:[7,5],goal:[6,7]},{id:'Robot-5',start:[6,1],goal:[5,2]}]
+                        obstacles: [[0,0],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[0,1],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[0,2],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,4],[3,5],[3,6],[3,8],[0,3],[3,9],[3,10],[4,0],[4,1],[4,4],[4,5],[4,6],[4,8],[4,9],[4,10],[0,4],[5,0],[5,1],[5,8],[5,9],[5,10],[6,0],[6,1],[6,4],[6,5],[6,6],[0,5],[6,8],[6,9],[6,10],[7,0],[7,1],[7,4],[7,5],[7,6],[7,8],[7,9],[0,6],[7,10],[8,0],[8,1],[8,8],[8,9],[8,10],[9,0],[9,1],[9,2],[9,3],[0,7],[9,4],[9,5],[9,6],[9,7],[9,8],[9,9],[9,10],[10,0],[10,1],[10,2],[0,8],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10]],
+                        agents: [{id:'Robot-1',start:[3,2],goal:[3,7]},{id:'Robot-2',start:[4,7],goal:[4,2]},{id:'Robot-3',start:[7,2],goal:[7,7]},{id:'Robot-4',start:[8,7],goal:[8,2]},{id:'Robot-5',start:[5,2],goal:[5,7]}]
+                    }
+                },
+                {
+                    id: 'example_5',
+                    title: 'Example 5',
+                    ttlPath: 'generated_kg/website_samples/robo5_test5.ttl',
+                    metadata: { agents: 5, conflicts: 'None', makespan: 13.0 },
+                    preview: {
+                        gridSize: [11, 11],
+                        obstacles: [[0,0],[0,9],[0,10],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[0,1],[1,8],[1,9],[1,10],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[0,2],[2,7],[2,8],[2,9],[2,10],[3,0],[3,1],[3,8],[3,9],[3,10],[4,0],[0,3],[4,1],[4,3],[4,5],[4,8],[4,9],[4,10],[5,0],[5,1],[5,5],[5,8],[0,4],[5,9],[5,10],[6,0],[6,1],[6,3],[6,8],[6,9],[6,10],[7,0],[7,1],[0,5],[7,3],[7,5],[7,8],[7,9],[7,10],[8,0],[8,1],[8,8],[8,9],[8,10],[0,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6],[9,7],[9,8],[9,9],[0,7],[9,10],[10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[10,7],[10,8],[0,8],[10,9],[10,10]],
+                        agents: [{id:'Robot-1',start:[3,2],goal:[8,7]},{id:'Robot-2',start:[3,7],goal:[8,2]},{id:'Robot-3',start:[4,2],goal:[7,7]},{id:'Robot-4',start:[5,4],goal:[6,5]},{id:'Robot-5',start:[8,3],goal:[3,6]}]
                     }
                 }
             ];
@@ -569,7 +576,7 @@
                     preview.obstacles.forEach(obs => {
                         const [x, y] = obs;
                         g.append('rect')
-                            .attr('x', x * cellSize + 1).attr('y', y * cellSize + 1)
+                            .attr('x', y * cellSize + 1).attr('y', x * cellSize + 1)
                             .attr('width', cellSize - 2).attr('height', cellSize - 2)
                             .attr('fill', '#D1D5DB').attr('rx', 2);
                     });
@@ -579,7 +586,7 @@
                         const [gx, gy] = agent.goal;
                         const color = config.agentColors(agent.id);
                         g.append('rect')
-                            .attr('x', gx * cellSize + 2).attr('y', gy * cellSize + 2)
+                            .attr('x', gy * cellSize + 2).attr('y', gx * cellSize + 2)
                             .attr('width', cellSize - 4).attr('height', cellSize - 4)
                             .attr('fill', 'none').attr('stroke', color)
                             .attr('stroke-width', 1.5).attr('stroke-dasharray', '2,2').attr('rx', 2);
@@ -592,14 +599,14 @@
                         const agentNum = agent.id.split('-').pop();
 
                         g.append('rect')
-                            .attr('x', sx * cellSize + 2).attr('y', sy * cellSize + 2)
+                            .attr('x', sy * cellSize + 2).attr('y', sx * cellSize + 2)
                             .attr('width', cellSize - 4).attr('height', cellSize - 4)
                             .attr('fill', color).attr('rx', 2);
 
                         if (cellSize > 10) {
                             g.append('text')
-                                .attr('x', sx * cellSize + cellSize / 2)
-                                .attr('y', sy * cellSize + cellSize / 2)
+                                .attr('x', sy * cellSize + cellSize / 2)
+                                .attr('y', sx * cellSize + cellSize / 2)
                                 .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
                                 .attr('fill', 'white').attr('font-size', `${Math.max(6, cellSize * 0.5)}px`)
                                 .attr('font-weight', '700').attr('font-family', 'Inter, sans-serif')
@@ -853,7 +860,6 @@
                             </div>
                             <div class="example-info">
                                 <h3>${example.title}</h3>
-                                <div class="subtitle">${example.subtitle}</div>
                                 <div class="example-metadata">
                                     <span class="badge">Agents: ${example.metadata.agents}</span>
                                     <span class="badge">Conflicts: ${example.metadata.conflicts}</span>
@@ -950,7 +956,7 @@
                         const response = await fetch(example.ttlPath);
                         if (!response.ok) throw new Error(`Failed to load example: ${example.title}`);
                         const ttlContent = await response.text();
-                        await this.loadKnowledgeGraph(ttlContent, `${example.title} (${example.subtitle})`);
+                        await this.loadKnowledgeGraph(ttlContent, example.title);
                     } catch (error) {
                         console.error('Error loading example:', error);
                         alert(`Error loading example: ${error.message}`);
